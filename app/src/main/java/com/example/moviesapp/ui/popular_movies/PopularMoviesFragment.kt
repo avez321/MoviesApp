@@ -7,18 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.moviesapp.MoviesApp
 import com.example.moviesapp.R
 import com.example.moviesapp.databinding.FragmentMovieListBinding
 
-
-import org.koin.android.viewmodel.ext.android.viewModel
+import javax.inject.Inject
 
 
 class PopularMoviesFragment : Fragment() {
     private lateinit var fragmentMovieListBinding: FragmentMovieListBinding
-    private val popularMoviesViewModel: PopularMoviesViewModel by viewModel()
+    @Inject lateinit var popularMoviesViewModel: PopularMoviesViewModel
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val moviesApp = requireActivity().application as MoviesApp
+        moviesApp.appComponent.inject(this)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

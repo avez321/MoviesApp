@@ -8,13 +8,13 @@ import androidx.lifecycle.AndroidViewModel
 import com.example.moviesapp.model.MoviesResponse
 import com.example.moviesapp.repository.RepositoryImp
 import kotlinx.coroutines.*
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+
 import com.example.moviesapp.model.Result
 import com.example.moviesapp.network.ResultWrapper
+import javax.inject.Inject
 
-class PopularMoviesViewModel(application: Application) : AndroidViewModel(application), KoinComponent {
-    private val repositoryImp: RepositoryImp by inject()
+class PopularMoviesViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
+    @Inject lateinit var repositoryImp: RepositoryImp
     private val movieDataObservableField: ObservableField<ArrayList<Result>?> =
         ObservableField()
     private val progressVisibilityObservableField:ObservableField<Int> = ObservableField()

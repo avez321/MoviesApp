@@ -4,10 +4,9 @@ import android.app.Application
 import android.util.Patterns
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
-import org.koin.core.KoinComponent
+import javax.inject.Inject
 
-class LoginViewModel(application: Application) : AndroidViewModel(application),
-    KoinComponent {
+class LoginViewModel @Inject constructor(application: Application) : AndroidViewModel(application){
     private var isValidEmail = false
     private var isValidPassword = false
     private val submitButtonEnableObservableField: ObservableField<Boolean> = ObservableField()

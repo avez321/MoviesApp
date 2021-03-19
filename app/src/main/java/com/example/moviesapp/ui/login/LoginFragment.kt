@@ -8,19 +8,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.moviesapp.MoviesApp
 import com.example.moviesapp.R
 import com.example.moviesapp.databinding.FragmentLoginBinding
-import org.koin.android.viewmodel.ext.android.viewModel
+import javax.inject.Inject
 
 
 class LoginFragment : Fragment() {
     lateinit var fragmentLoginBinding:FragmentLoginBinding
 
-    private val loginViewModel: LoginViewModel by viewModel()
+    @Inject lateinit var  loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }
+        val moviesApp = requireActivity().application as MoviesApp
+        moviesApp.appComponent.inject(this)
+
+     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
